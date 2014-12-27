@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Corexy : Marlin cofiguration for CoreXY 3Dprinter: http://3dprinter.org.ua/shop/3d-printer-corexy/">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Corexy</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/3DPrinter-org-ua/CoreXY">View on GitHub</a>
+
+          <h1 id="project_title">Corexy</h1>
+          <h2 id="project_tagline">Marlin cofiguration for CoreXY 3Dprinter: http://3dprinter.org.ua/shop/3d-printer-corexy/</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/3DPrinter-org-ua/CoreXY/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/3DPrinter-org-ua/CoreXY/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="ifndef-configuration_h" class="anchor" href="#ifndef-configuration_h" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifndef CONFIGURATION_H</h1>
+
+<h1>
+<a id="define-configuration_h" class="anchor" href="#define-configuration_h" aria-hidden="true"><span class="octicon octicon-link"></span></a>define CONFIGURATION_H</h1>
+
+<p>// This configuration file contains the basic settings.
+// Advanced settings can be found in Configuration_adv.h
+// BASIC SETTINGS: select your board type, temperature sensor type, axis scaling, and endstop configuration</p>
+
+<p>//===========================================================================
+//============================= DELTA Printer ===============================
+//===========================================================================
+// For a Delta printer replace the configuration files with the files in the
+// example_configurations/delta directory.
+//</p>
+
+<p>// User-specified version info of this build to display in [Pronterface, etc] terminal window during
+// startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
+// build by the user have been successfully uploaded into firmware.</p>
+
+<h1>
+<a id="define-string_version_config_h-date---time--build-date-and-time" class="anchor" href="#define-string_version_config_h-date---time--build-date-and-time" aria-hidden="true"><span class="octicon octicon-link"></span></a>define STRING_VERSION_CONFIG_H <strong>DATE</strong> " " <strong>TIME</strong> // build date and time</h1>
+
+<h1>
+<a id="define-string_config_h_author-none-default-config--who-made-the-changes" class="anchor" href="#define-string_config_h_author-none-default-config--who-made-the-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.</h1>
+
+<p>// SERIAL_PORT selects which serial port should be used for communication with the host.
+// This allows the connection of wireless adapters (for instance) to non-default port pins.
+// Serial port 0 is still used by the Arduino bootloader regardless of this setting.</p>
+
+<h1>
+<a id="define-serial_port-0" class="anchor" href="#define-serial_port-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define SERIAL_PORT 0</h1>
+
+<p>// This determines the communication speed of the printer
+// This determines the communication speed of the printer</p>
+
+<h1>
+<a id="define-baudrate-250000" class="anchor" href="#define-baudrate-250000" aria-hidden="true"><span class="octicon octicon-link"></span></a>define BAUDRATE 250000</h1>
+
+<p>// This enables the serial port associated to the Bluetooth interface
+//#define BTENABLED              // Enable BT interface on AT90USB devices</p>
+
+<p>//// The following define selects which electronics board you have. Please choose the one that matches your setup
+// 10 = Gen7 custom (Alfons3 Version) "<a href="https://github.com/Alfons3/Generation_7_Electronics">https://github.com/Alfons3/Generation_7_Electronics</a>"
+// 11 = Gen7 v1.1, v1.2 = 11
+// 12 = Gen7 v1.3
+// 13 = Gen7 v1.4
+// 2  = Cheaptronic v1.0
+// 20 = Sethi 3D_1
+// 3  = MEGA/RAMPS up to 1.2 = 3
+// 33 = RAMPS 1.3 / 1.4 (Power outputs: Extruder, Fan, Bed)
+// 34 = RAMPS 1.3 / 1.4 (Power outputs: Extruder0, Extruder1, Bed)
+// 35 = RAMPS 1.3 / 1.4 (Power outputs: Extruder, Fan, Fan)
+// 4  = Duemilanove w/ ATMega328P pin assignment
+// 5  = Gen6
+// 51 = Gen6 deluxe
+// 6  = Sanguinololu &lt; 1.2
+// 62 = Sanguinololu 1.2 and above
+// 63 = Melzi
+// 64 = STB V1.1
+// 65 = Azteeg X1
+// 66 = Melzi with ATmega1284 (MaKr3d version)
+// 67 = Azteeg X3
+// 68 = Azteeg X3 Pro
+// 7  = Ultimaker
+// 71 = Ultimaker (Older electronics. Pre 1.5.4. This is rare)
+// 72 = Ultimainboard 2.x (Uses TEMP_SENSOR 20)
+// 77 = 3Drag Controller
+// 8  = Teensylu
+// 80 = Rumba
+// 81 = Printrboard (AT90USB1286)
+// 82 = Brainwave (AT90USB646)
+// 83 = SAV Mk-I (AT90USB1286)
+// 9  = Gen3+
+// 70 = Megatronics
+// 701= Megatronics v2.0
+// 702= Minitronics v1.0
+// 90 = Alpha OMCA board
+// 91 = Final OMCA board
+// 301= Rambo
+// 21 = Elefu Ra Board (v3)
+// 88 = 5DPrint D8 Driver Board</p>
+
+<h1>
+<a id="ifndef-motherboard" class="anchor" href="#ifndef-motherboard" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifndef MOTHERBOARD</h1>
+
+<h1>
+<a id="define-motherboard-33" class="anchor" href="#define-motherboard-33" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MOTHERBOARD 33</h1>
+
+<h1>
+<a id="endif" class="anchor" href="#endif" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// Define this to set a custom name for your generic Mendel,
+// #define CUSTOM_MENDEL_NAME "This Mendel"</p>
+
+<p>// Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
+// You can use an online service to generate a random UUID. (eg <a href="http://www.uuidgenerator.net/version4">http://www.uuidgenerator.net/version4</a>)
+// #define MACHINE_UUID "00000000-0000-0000-0000-000000000000"</p>
+
+<p>// This defines the number of extruders</p>
+
+<h1>
+<a id="define-extruders-1" class="anchor" href="#define-extruders-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define EXTRUDERS 1</h1>
+
+<p>//// The following define selects which power supply you have. Please choose the one that matches your setup
+// 1 = ATX
+// 2 = X-Box 360 203Watts (the blue wire connected to PS_ON and the red wire to VCC)</p>
+
+<h1>
+<a id="define-power_supply-1" class="anchor" href="#define-power_supply-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define POWER_SUPPLY 1</h1>
+
+<p>// Define this to have the electronics keep the power supply off on startup. If you don't know what this is leave it.
+// #define PS_DEFAULT_OFF</p>
+
+<p>//===========================================================================
+//=============================Thermal Settings  ============================
+//===========================================================================
+//
+//--NORMAL IS 4.7kohm PULLUP!-- 1kohm pullup can be used on hotend sensor, using correct resistor and table
+//
+//// Temperature sensor settings:
+// -2 is thermocouple with MAX6675 (only for sensor 0)
+// -1 is thermocouple with AD595
+// 0 is not used
+// 1 is 100k thermistor - best choice for EPCOS 100k (4.7k pullup)
+// 2 is 200k thermistor - ATC Semitec 204GT-2 (4.7k pullup)
+// 3 is Mendel-parts thermistor (4.7k pullup)
+// 4 is 10k thermistor !! do not use it for a hotend. It gives bad resolution at high temp. !!
+// 5 is 100K thermistor - ATC Semitec 104GT-2 (Used in ParCan &amp; J-Head) (4.7k pullup)
+// 6 is 100k EPCOS - Not as accurate as table 1 (created using a fluke thermocouple) (4.7k pullup)
+// 7 is 100k Honeywell thermistor 135-104LAG-J01 (4.7k pullup)
+// 71 is 100k Honeywell thermistor 135-104LAF-J01 (4.7k pullup)
+// 8 is 100k 0603 SMD Vishay NTCS0603E3104FXT (4.7k pullup)
+// 9 is 100k GE Sensing AL03006-58.2K-97-G1 (4.7k pullup)
+// 10 is 100k RS thermistor 198-961 (4.7k pullup)
+// 11 is 100k beta 3950 1% thermistor (4.7k pullup)
+// 12 is 100k 0603 SMD Vishay NTCS0603E3104FXT (4.7k pullup) (calibrated for Makibox hot bed)
+// 20 is the PT100 circuit found in the Ultimainboard V2.x
+// 60 is 100k Maker's Tool Works Kapton Bed Thermistor beta=3950
+//
+//    1k ohm pullup tables - This is not normal, you would have to have changed out your 4.7k for 1k
+//                          (but gives greater accuracy and more stable PID)
+// 51 is 100k thermistor - EPCOS (1k pullup)
+// 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
+// 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan &amp; J-Head) (1k pullup)
+//
+// 1047 is Pt1000 with 4k7 pullup
+// 1010 is Pt1000 with 1k pullup (non standard)
+// 147 is Pt100 with 4k7 pullup
+// 110 is Pt100 with 1k pullup (non standard)</p>
+
+<h1>
+<a id="define-temp_sensor_0-1" class="anchor" href="#define-temp_sensor_0-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_SENSOR_0 1</h1>
+
+<h1>
+<a id="define-temp_sensor_1-0" class="anchor" href="#define-temp_sensor_1-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_SENSOR_1 0</h1>
+
+<h1>
+<a id="define-temp_sensor_2-0" class="anchor" href="#define-temp_sensor_2-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_SENSOR_2 0</h1>
+
+<h1>
+<a id="define-temp_sensor_bed-0" class="anchor" href="#define-temp_sensor_bed-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_SENSOR_BED 0</h1>
+
+<p>// This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
+//#define TEMP_SENSOR_1_AS_REDUNDANT</p>
+
+<h1>
+<a id="define-max_redundant_temp_sensor_diff-10" class="anchor" href="#define-max_redundant_temp_sensor_diff-10" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10</h1>
+
+<p>// Actual temperature must be close to target for this long before M109 returns success</p>
+
+<h1>
+<a id="define-temp_residency_time-10---seconds" class="anchor" href="#define-temp_residency_time-10---seconds" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_RESIDENCY_TIME 10  // (seconds)</h1>
+
+<h1>
+<a id="define-temp_hysteresis-3--------degc-range-of---temperatures-considered-close-to-the-target-one" class="anchor" href="#define-temp_hysteresis-3--------degc-range-of---temperatures-considered-close-to-the-target-one" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_HYSTERESIS 3       // (degC) range of +/- temperatures considered "close" to the target one</h1>
+
+<h1>
+<a id="define-temp_window-----1--------degc-window-around-target-to-start-the-residency-timer-x-degc-early" class="anchor" href="#define-temp_window-----1--------degc-window-around-target-to-start-the-residency-timer-x-degc-early" aria-hidden="true"><span class="octicon octicon-link"></span></a>define TEMP_WINDOW     1       // (degC) Window around target to start the residency timer x degC early.</h1>
+
+<p>// The minimal temperature defines the temperature below which the heater will not be enabled It is used
+// to check that the wiring to the thermistor is not broken.
+// Otherwise this would lead to the heater being powered on all the time.</p>
+
+<h1>
+<a id="define-heater_0_mintemp-5" class="anchor" href="#define-heater_0_mintemp-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_0_MINTEMP 5</h1>
+
+<h1>
+<a id="define-heater_1_mintemp-5" class="anchor" href="#define-heater_1_mintemp-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_1_MINTEMP 5</h1>
+
+<h1>
+<a id="define-heater_2_mintemp-5" class="anchor" href="#define-heater_2_mintemp-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_2_MINTEMP 5</h1>
+
+<h1>
+<a id="define-bed_mintemp-5" class="anchor" href="#define-bed_mintemp-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>define BED_MINTEMP 5</h1>
+
+<p>// When temperature exceeds max temp, your heater will be switched off.
+// This feature exists to protect your hotend from overheating accidentally, but <em>NOT</em> from thermistor short/failure!
+// You should use MINTEMP for thermistor short/failure protection.</p>
+
+<h1>
+<a id="define-heater_0_maxtemp-275" class="anchor" href="#define-heater_0_maxtemp-275" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_0_MAXTEMP 275</h1>
+
+<h1>
+<a id="define-heater_1_maxtemp-275" class="anchor" href="#define-heater_1_maxtemp-275" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_1_MAXTEMP 275</h1>
+
+<h1>
+<a id="define-heater_2_maxtemp-275" class="anchor" href="#define-heater_2_maxtemp-275" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HEATER_2_MAXTEMP 275</h1>
+
+<h1>
+<a id="define-bed_maxtemp-150" class="anchor" href="#define-bed_maxtemp-150" aria-hidden="true"><span class="octicon octicon-link"></span></a>define BED_MAXTEMP 150</h1>
+
+<p>// If your bed has low resistance e.g. .6 ohm and throws the fuse you can duty cycle it to reduce the
+// average current. The value should be an integer and the heat bed will be turned on for 1 interval of
+// HEATER_BED_DUTY_CYCLE_DIVIDER intervals.
+//#define HEATER_BED_DUTY_CYCLE_DIVIDER 4</p>
+
+<p>// If you want the M105 heater power reported in watts, define the BED_WATTS, and (shared for all extruders) EXTRUDER_WATTS
+//#define EXTRUDER_WATTS (12.0<em>12.0/6.7) //  P=I^2/R
+//#define BED_WATTS (12.0</em>12.0/1.1)      // P=I^2/R</p>
+
+<p>// PID settings:
+// Comment the following line to disable PID and enable bang-bang.</p>
+
+<h1>
+<a id="define-pidtemp" class="anchor" href="#define-pidtemp" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PIDTEMP</h1>
+
+<h1>
+<a id="define-bang_max-255--limits-current-to-nozzle-while-in-bang-bang-mode-255full-current" class="anchor" href="#define-bang_max-255--limits-current-to-nozzle-while-in-bang-bang-mode-255full-current" aria-hidden="true"><span class="octicon octicon-link"></span></a>define BANG_MAX 255 // limits current to nozzle while in bang-bang mode; 255=full current</h1>
+
+<h1>
+<a id="define-pid_max-255--limits-current-to-nozzle-while-pid-is-active-see-pid_functional_range-below-255full-current" class="anchor" href="#define-pid_max-255--limits-current-to-nozzle-while-pid-is-active-see-pid_functional_range-below-255full-current" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PID_MAX 255 // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current</h1>
+
+<h1>
+<a id="ifdef-pidtemp" class="anchor" href="#ifdef-pidtemp" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef PIDTEMP</h1>
+
+<p>//#define PID_DEBUG // Sends debug data to the serial port.
+  //#define PID_OPENLOOP 1 // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
+  #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
+                                  // is more then PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
+  #define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
+  #define K1 0.95 //smoothing factor within the PID
+  #define PID_dT ((OVERSAMPLENR * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine</p>
+
+<p>// If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+// Ultimaker
+    #define  DEFAULT_Kp 22.2
+    #define  DEFAULT_Ki 1.08
+    #define  DEFAULT_Kd 114</p>
+
+<p>// MakerGear
+//    #define  DEFAULT_Kp 7.0
+//    #define  DEFAULT_Ki 0.1
+//    #define  DEFAULT_Kd 12</p>
+
+<p>// Mendel Parts V9 on 12V
+//    #define  DEFAULT_Kp 63.0
+//    #define  DEFAULT_Ki 2.25
+//    #define  DEFAULT_Kd 440</p>
+
+<h1>
+<a id="endif--pidtemp" class="anchor" href="#endif--pidtemp" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif // PIDTEMP</h1>
+
+<p>// Bed Temperature Control
+// Select PID or bang-bang with PIDTEMPBED. If bang-bang, BED_LIMIT_SWITCHING will enable hysteresis
+//
+// Uncomment this to enable PID on the bed. It uses the same frequency PWM as the extruder.
+// If your PID_dT above is the default, and correct for your hardware/configuration, that means 7.689Hz,
+// which is fine for driving a square wave into a resistive load and does not significantly impact you FET heating.
+// This also works fine on a Fotek SSR-10DA Solid State Relay into a 250W heater.
+// If your configuration is significantly different than this and you don't understand the issues involved, you probably
+// shouldn't use bed PID until someone else verifies your hardware works.
+// If this is enabled, find your own PID constants below.
+//#define PIDTEMPBED
+//
+//#define BED_LIMIT_SWITCHING</p>
+
+<p>// This sets the max power delivered to the bed, and replaces the HEATER_BED_DUTY_CYCLE_DIVIDER option.
+// all forms of bed control obey this (PID, bang-bang, bang-bang with hysteresis)
+// setting this to anything other than 255 enables a form of PWM to the bed just like HEATER_BED_DUTY_CYCLE_DIVIDER did,
+// so you shouldn't use it unless you are OK with PWM on your bed.  (see the comment on enabling PIDTEMPBED)</p>
+
+<h1>
+<a id="define-max_bed_power-255--limits-duty-cycle-to-bed-255full-current" class="anchor" href="#define-max_bed_power-255--limits-duty-cycle-to-bed-255full-current" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current</h1>
+
+<h1>
+<a id="ifdef-pidtempbed" class="anchor" href="#ifdef-pidtempbed" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef PIDTEMPBED</h1>
+
+<p>//120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
+//from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
+    #define  DEFAULT_bedKp 10.00
+    #define  DEFAULT_bedKi .023
+    #define  DEFAULT_bedKd 305.4</p>
+
+<p>//120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
+//from pidautotune
+//    #define  DEFAULT_bedKp 97.1
+//    #define  DEFAULT_bedKi 1.41
+//    #define  DEFAULT_bedKd 1675.16</p>
+
+<p>// FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.</p>
+
+<h1>
+<a id="endif--pidtempbed" class="anchor" href="#endif--pidtempbed" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif // PIDTEMPBED</h1>
+
+<p>//this prevents dangerous Extruder moves, i.e. if the temperature is under the limit
+//can be software-disabled for whatever purposes by</p>
+
+<h1>
+<a id="define-prevent_dangerous_extrude" class="anchor" href="#define-prevent_dangerous_extrude" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PREVENT_DANGEROUS_EXTRUDE</h1>
+
+<p>//if PREVENT_DANGEROUS_EXTRUDE is on, you can still disable (uncomment) very long bits of extrusion separately.</p>
+
+<h1>
+<a id="define-prevent_lengthy_extrude" class="anchor" href="#define-prevent_lengthy_extrude" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PREVENT_LENGTHY_EXTRUDE</h1>
+
+<h1>
+<a id="define-extrude_mintemp-170" class="anchor" href="#define-extrude_mintemp-170" aria-hidden="true"><span class="octicon octicon-link"></span></a>define EXTRUDE_MINTEMP 170</h1>
+
+<h1>
+<a id="define-extrude_maxlength-x_max_lengthy_max_length-prevent-extrusion-of-very-large-distances" class="anchor" href="#define-extrude_maxlength-x_max_lengthy_max_length-prevent-extrusion-of-very-large-distances" aria-hidden="true"><span class="octicon octicon-link"></span></a>define EXTRUDE_MAXLENGTH (X_MAX_LENGTH+Y_MAX_LENGTH) //prevent extrusion of very large distances.</h1>
+
+<p>//===========================================================================
+//=============================Mechanical Settings===========================
+//===========================================================================</p>
+
+<p>// Uncomment the following line to enable CoreXY kinematics
+ #define COREXY</p>
+
+<p>// coarse Endstop Settings</p>
+
+<h1>
+<a id="define-endstoppullups--comment-this-out-using--at-the-start-of-the-line-to-disable-the-endstop-pullup-resistors" class="anchor" href="#define-endstoppullups--comment-this-out-using--at-the-start-of-the-line-to-disable-the-endstop-pullup-resistors" aria-hidden="true"><span class="octicon octicon-link"></span></a>define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors</h1>
+
+<h1>
+<a id="ifndef-endstoppullups" class="anchor" href="#ifndef-endstoppullups" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifndef ENDSTOPPULLUPS</h1>
+
+<p>// fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
+  // #define ENDSTOPPULLUP_XMAX
+  // #define ENDSTOPPULLUP_YMAX
+  // #define ENDSTOPPULLUP_ZMAX
+  // #define ENDSTOPPULLUP_XMIN
+  // #define ENDSTOPPULLUP_YMIN
+  // #define ENDSTOPPULLUP_ZMIN</p>
+
+<h1>
+<a id="endif-1" class="anchor" href="#endif-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="ifdef-endstoppullups" class="anchor" href="#ifdef-endstoppullups" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef ENDSTOPPULLUPS</h1>
+
+<p>#define ENDSTOPPULLUP_XMAX
+  #define ENDSTOPPULLUP_YMAX
+  #define ENDSTOPPULLUP_ZMAX
+  #define ENDSTOPPULLUP_XMIN
+  #define ENDSTOPPULLUP_YMIN
+  #define ENDSTOPPULLUP_ZMIN</p>
+
+<h1>
+<a id="endif-2" class="anchor" href="#endif-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
+const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+//#define DISABLE_MAX_ENDSTOPS
+//#define DISABLE_MIN_ENDSTOPS</p>
+
+<p>// Disable max endstops for compatibility with endstop checking routine</p>
+
+<h1>
+<a id="if-definedcorexy--defineddisable_max_endstops" class="anchor" href="#if-definedcorexy--defineddisable_max_endstops" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined(COREXY) &amp;&amp; !defined(DISABLE_MAX_ENDSTOPS)</h1>
+
+<p>#define DISABLE_MAX_ENDSTOPS</p>
+
+<h1>
+<a id="endif-3" class="anchor" href="#endif-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1</p>
+
+<h1>
+<a id="define-x_enable_on-0" class="anchor" href="#define-x_enable_on-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define X_ENABLE_ON 0</h1>
+
+<h1>
+<a id="define-y_enable_on-0" class="anchor" href="#define-y_enable_on-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Y_ENABLE_ON 0</h1>
+
+<h1>
+<a id="define-z_enable_on-0" class="anchor" href="#define-z_enable_on-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Z_ENABLE_ON 0</h1>
+
+<h1>
+<a id="define-e_enable_on-0--for-all-extruders" class="anchor" href="#define-e_enable_on-0--for-all-extruders" aria-hidden="true"><span class="octicon octicon-link"></span></a>define E_ENABLE_ON 0 // For all extruders</h1>
+
+<p>// Disables axis when it's not being used.</p>
+
+<h1>
+<a id="define-disable_x-false" class="anchor" href="#define-disable_x-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DISABLE_X false</h1>
+
+<h1>
+<a id="define-disable_y-false" class="anchor" href="#define-disable_y-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DISABLE_Y false</h1>
+
+<h1>
+<a id="define-disable_z-false" class="anchor" href="#define-disable_z-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DISABLE_Z false</h1>
+
+<h1>
+<a id="define-disable_e-false--for-all-extruders" class="anchor" href="#define-disable_e-false--for-all-extruders" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DISABLE_E false // For all extruders</h1>
+
+<h1>
+<a id="define-invert_x_dir-false-----for-mendel-set-to-false-for-orca-set-to-true" class="anchor" href="#define-invert_x_dir-false-----for-mendel-set-to-false-for-orca-set-to-true" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true</h1>
+
+<h1>
+<a id="define-invert_y_dir-false-----for-mendel-set-to-true-for-orca-set-to-false" class="anchor" href="#define-invert_y_dir-false-----for-mendel-set-to-true-for-orca-set-to-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false</h1>
+
+<h1>
+<a id="define-invert_z_dir-false------for-mendel-set-to-false-for-orca-set-to-true" class="anchor" href="#define-invert_z_dir-false------for-mendel-set-to-false-for-orca-set-to-true" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_Z_DIR false     // for Mendel set to false, for Orca set to true</h1>
+
+<h1>
+<a id="define-invert_e0_dir-true----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" class="anchor" href="#define-invert_e0_dir-true----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false</h1>
+
+<h1>
+<a id="define-invert_e1_dir-false-----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" class="anchor" href="#define-invert_e1_dir-false-----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false</h1>
+
+<h1>
+<a id="define-invert_e2_dir-false----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" class="anchor" href="#define-invert_e2_dir-false----for-direct-drive-extruder-v9-set-to-true-for-geared-extruder-set-to-false" aria-hidden="true"><span class="octicon octicon-link"></span></a>define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false</h1>
+
+<p>// ENDSTOP SETTINGS:
+// Sets direction of endstops when homing; 1=MAX, -1=MIN</p>
+
+<h1>
+<a id="define-x_home_dir--1" class="anchor" href="#define-x_home_dir--1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define X_HOME_DIR -1</h1>
+
+<h1>
+<a id="define-y_home_dir--1" class="anchor" href="#define-y_home_dir--1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Y_HOME_DIR -1</h1>
+
+<h1>
+<a id="define-z_home_dir--1" class="anchor" href="#define-z_home_dir--1" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Z_HOME_DIR -1</h1>
+
+<h1>
+<a id="define-min_software_endstops-true--if-true-axis-wont-move-to-coordinates-less-than-home_pos" class="anchor" href="#define-min_software_endstops-true--if-true-axis-wont-move-to-coordinates-less-than-home_pos" aria-hidden="true"><span class="octicon octicon-link"></span></a>define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.</h1>
+
+<h1>
+<a id="define-max_software_endstops-true---if-true-axis-wont-move-to-coordinates-greater-than-the-defined-lengths-below" class="anchor" href="#define-max_software_endstops-true---if-true-axis-wont-move-to-coordinates-greater-than-the-defined-lengths-below" aria-hidden="true"><span class="octicon octicon-link"></span></a>define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.</h1>
+
+<p>// Travel limits after homing</p>
+
+<h1>
+<a id="define-x_max_pos-196" class="anchor" href="#define-x_max_pos-196" aria-hidden="true"><span class="octicon octicon-link"></span></a>define X_MAX_POS 196</h1>
+
+<h1>
+<a id="define-x_min_pos-0" class="anchor" href="#define-x_min_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define X_MIN_POS 0</h1>
+
+<h1>
+<a id="define-y_max_pos-196" class="anchor" href="#define-y_max_pos-196" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Y_MAX_POS 196</h1>
+
+<h1>
+<a id="define-y_min_pos-0" class="anchor" href="#define-y_min_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Y_MIN_POS 0</h1>
+
+<h1>
+<a id="define-z_max_pos-210" class="anchor" href="#define-z_max_pos-210" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Z_MAX_POS 210</h1>
+
+<h1>
+<a id="define-z_min_pos-0" class="anchor" href="#define-z_min_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Z_MIN_POS 0</h1>
+
+<h1>
+<a id="define-x_max_length-x_max_pos---x_min_pos" class="anchor" href="#define-x_max_length-x_max_pos---x_min_pos" aria-hidden="true"><span class="octicon octicon-link"></span></a>define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)</h1>
+
+<h1>
+<a id="define-y_max_length-y_max_pos---y_min_pos" class="anchor" href="#define-y_max_length-y_max_pos---y_min_pos" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Y_MAX_LENGTH (Y_MAX_POS - Y_MIN_POS)</h1>
+
+<h1>
+<a id="define-z_max_length-z_max_pos---z_min_pos" class="anchor" href="#define-z_max_length-z_max_pos---z_min_pos" aria-hidden="true"><span class="octicon octicon-link"></span></a>define Z_MAX_LENGTH (Z_MAX_POS - Z_MIN_POS)</h1>
+
+<p>//============================= Bed Auto Leveling ===========================</p>
+
+<p>//#define ENABLE_AUTO_BED_LEVELING // Delete the comment to enable (remove // at the start of the line)</p>
+
+<h1>
+<a id="ifdef-enable_auto_bed_leveling" class="anchor" href="#ifdef-enable_auto_bed_leveling" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef ENABLE_AUTO_BED_LEVELING</h1>
+
+<p>// There are 2 different ways to pick the X and Y locations to probe:</p>
+
+<p>//  - "grid" mode
+//    Probe every point in a rectangular grid
+//    You must specify the rectangle, and the density of sample points
+//    This mode is preferred because there are more measurements.
+//    It used to be called ACCURATE_BED_LEVELING but "grid" is more descriptive</p>
+
+<p>//  - "3-point" mode
+//    Probe 3 arbitrary points on the bed (that aren't colinear)
+//    You must specify the X &amp; Y coordinates of all 3 points</p>
+
+<p>#define AUTO_BED_LEVELING_GRID
+  // with AUTO_BED_LEVELING_GRID, the bed is sampled in a
+  // AUTO_BED_LEVELING_GRID_POINTSxAUTO_BED_LEVELING_GRID_POINTS grid
+  // and least squares solution is calculated
+  // Note: this feature occupies 10'206 byte
+  #ifdef AUTO_BED_LEVELING_GRID</p>
+
+<pre><code>// set the rectangle in which to probe
+#define LEFT_PROBE_BED_POSITION 15
+#define RIGHT_PROBE_BED_POSITION 170
+#define BACK_PROBE_BED_POSITION 180
+#define FRONT_PROBE_BED_POSITION 20
+
+ // set the number of grid points per dimension
+ // I wouldn't see a reason to go above 3 (=9 probing points on the bed)
+#define AUTO_BED_LEVELING_GRID_POINTS 2
+</code></pre>
+
+<p>#else  // not AUTO_BED_LEVELING_GRID
+    // with no grid, just probe 3 arbitrary points.  A simple cross-product
+    // is used to esimate the plane of the print bed</p>
+
+<pre><code>  #define ABL_PROBE_PT_1_X 15
+  #define ABL_PROBE_PT_1_Y 180
+  #define ABL_PROBE_PT_2_X 15
+  #define ABL_PROBE_PT_2_Y 20
+  #define ABL_PROBE_PT_3_X 170
+  #define ABL_PROBE_PT_3_Y 20
+</code></pre>
+
+<p>#endif // AUTO_BED_LEVELING_GRID</p>
+
+<p>// these are the offsets to the probe relative to the extruder tip (Hotend - Probe)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -25
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -29
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -12.35</p>
+
+<p>#define Z_RAISE_BEFORE_HOMING 4       // (in mm) Raise Z before homing (G28) for Probe Clearance.
+                                        // Be sure you have this distance over your Z_MAX_POS in case</p>
+
+<p>#define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min</p>
+
+<p>#define Z_RAISE_BEFORE_PROBING 15    //How much the extruder will be raised before traveling to the first probing point.
+  #define Z_RAISE_BETWEEN_PROBINGS 5  //How much the extruder will be raised when traveling from between next probing points</p>
+
+<p>//If defined, the Probe servo will be turned on only during movement and then turned off to avoid jerk
+  //The value is the delay to turn the servo off after powered on - depends on the servo speed; 300ms is good value, but you can try lower it.
+  // You MUST HAVE the SERVO_ENDSTOPS defined to use here a value higher than zero otherwise your code will not compile.</p>
+
+<p>//  #define PROBE_SERVO_DEACTIVATION_DELAY 300</p>
+
+<p>//If you have enabled the Bed Auto Leveling and are using the same Z Probe for Z Homing,
+//it is highly recommended you let this Z_SAFE_HOMING enabled!!!</p>
+
+<p>#define Z_SAFE_HOMING   // This feature is meant to avoid Z homing with probe outside the bed area.
+                          // When defined, it will:
+                          // - Allow Z homing only after X and Y homing AND stepper drivers still enabled
+                          // - If stepper drivers timeout, it will need X and Y homing again before Z homing
+                          // - Position the probe in a defined XY point before Z Homing when homing all axis (G28)
+                          // - Block Z homing only when the probe is outside bed area.</p>
+
+<p>#ifdef Z_SAFE_HOMING</p>
+
+<pre><code>#define Z_SAFE_HOMING_X_POINT (X_MAX_LENGTH/2)    // X point for Z homing when homing all axis (G28)
+#define Z_SAFE_HOMING_Y_POINT (Y_MAX_LENGTH/2)    // Y point for Z homing when homing all axis (G28)
+</code></pre>
+
+<p>#endif</p>
+
+<h1>
+<a id="endif--enable_auto_bed_leveling" class="anchor" href="#endif--enable_auto_bed_leveling" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif // ENABLE_AUTO_BED_LEVELING</h1>
+
+<p>// The position of the homing switches
+//#define MANUAL_HOME_POSITIONS  // If defined, MANUAL_*_HOME_POS below will be used
+//#define BED_CENTER_AT_0_0  // If defined, the center of the bed is at (X=0, Y=0)</p>
+
+<p>//Manual homing switch locations:
+// For deltabots this means top and center of the Cartesian print volume.</p>
+
+<h1>
+<a id="define-manual_x_home_pos-0" class="anchor" href="#define-manual_x_home_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MANUAL_X_HOME_POS 0</h1>
+
+<h1>
+<a id="define-manual_y_home_pos-0" class="anchor" href="#define-manual_y_home_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MANUAL_Y_HOME_POS 0</h1>
+
+<h1>
+<a id="define-manual_z_home_pos-0" class="anchor" href="#define-manual_z_home_pos-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define MANUAL_Z_HOME_POS 0</h1>
+
+<p>//#define MANUAL_Z_HOME_POS 402 // For delta: Distance between nozzle and print surface after homing.</p>
+
+<p>//// MOVEMENT SETTINGS</p>
+
+<h1>
+<a id="define-num_axis-4--the-axis-order-in-all-axis-related-arrays-is-x-y-z-e" class="anchor" href="#define-num_axis-4--the-axis-order-in-all-axis-related-arrays-is-x-y-z-e" aria-hidden="true"><span class="octicon octicon-link"></span></a>define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E</h1>
+
+<h1>
+<a id="define-homing_feedrate-5060-5060-460-0---set-the-homing-speeds-mmmin" class="anchor" href="#define-homing_feedrate-5060-5060-460-0---set-the-homing-speeds-mmmin" aria-hidden="true"><span class="octicon octicon-link"></span></a>define HOMING_FEEDRATE {50<em>60, 50</em>60, 4*60, 0}  // set the homing speeds (mm/min)</h1>
+
+<p>// default settings</p>
+
+<h1>
+<a id="define-default_axis_steps_per_unit---808080095---default-steps-per-unit-for-ultimaker" class="anchor" href="#define-default_axis_steps_per_unit---808080095---default-steps-per-unit-for-ultimaker" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,800,95}  // default steps per unit for Ultimaker</h1>
+
+<h1>
+<a id="define-default_max_feedrate----------500-500-5-25-----mmsec" class="anchor" href="#define-default_max_feedrate----------500-500-5-25-----mmsec" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 25}    // (mm/sec)</h1>
+
+<h1>
+<a id="define-default_max_acceleration------9000900010010000-----x-y-z-e-maximum-start-speed-for-accelerated-moves-e-default-values-are-good-for-skeinforge-40-for-older-versions-raise-them-a-lot" class="anchor" href="#define-default_max_acceleration------9000900010010000-----x-y-z-e-maximum-start-speed-for-accelerated-moves-e-default-values-are-good-for-skeinforge-40-for-older-versions-raise-them-a-lot" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.</h1>
+
+<h1>
+<a id="define-default_acceleration----------3000-----x-y-z-and-e-max-acceleration-in-mms2-for-printing-moves" class="anchor" href="#define-default_acceleration----------3000-----x-y-z-and-e-max-acceleration-in-mms2-for-printing-moves" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves</h1>
+
+<h1>
+<a id="define-default_retract_acceleration--3000----x-y-z-and-e-max-acceleration-in-mms2-for-retracts" class="anchor" href="#define-default_retract_acceleration--3000----x-y-z-and-e-max-acceleration-in-mms2-for-retracts" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts</h1>
+
+<p>// Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
+// The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
+// For the other hotends it is their distance from the extruder 0 hotend.
+// #define EXTRUDER_OFFSET_X {0.0, 20.00} // (in mm) for each extruder, offset of the hotend on the X axis
+// #define EXTRUDER_OFFSET_Y {0.0, 5.00}  // (in mm) for each extruder, offset of the hotend on the Y axis</p>
+
+<p>// The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)</p>
+
+<h1>
+<a id="define-default_xyjerk----------------200-----mmsec" class="anchor" href="#define-default_xyjerk----------------200-----mmsec" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_XYJERK                20.0    // (mm/sec)</h1>
+
+<h1>
+<a id="define-default_zjerk-----------------04------mmsec" class="anchor" href="#define-default_zjerk-----------------04------mmsec" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_ZJERK                 0.4     // (mm/sec)</h1>
+
+<h1>
+<a id="define-default_ejerk-----------------50-----mmsec" class="anchor" href="#define-default_ejerk-----------------50-----mmsec" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_EJERK                 5.0    // (mm/sec)</h1>
+
+<p>//===========================================================================
+//=============================Additional Features===========================
+//===========================================================================</p>
+
+<p>// Custom M code points</p>
+
+<h1>
+<a id="define-custom_m_codes" class="anchor" href="#define-custom_m_codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>define CUSTOM_M_CODES</h1>
+
+<h1>
+<a id="ifdef-custom_m_codes" class="anchor" href="#ifdef-custom_m_codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef CUSTOM_M_CODES</h1>
+
+<p>#define CUSTOM_M_CODE_SET_Z_PROBE_OFFSET 851
+  #define Z_PROBE_OFFSET_RANGE_MIN -15
+  #define Z_PROBE_OFFSET_RANGE_MAX -5</p>
+
+<h1>
+<a id="endif-4" class="anchor" href="#endif-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// EEPROM
+// The microcontroller can store settings in the EEPROM, e.g. max velocity...
+// M500 - stores parameters in EEPROM
+// M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
+// M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
+//define this to enable EEPROM support
+//#define EEPROM_SETTINGS
+//to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
+// please keep turned on if you can.
+//#define EEPROM_CHITCHAT</p>
+
+<p>// Preheat Constants</p>
+
+<h1>
+<a id="define-pla_preheat_hotend_temp-180" class="anchor" href="#define-pla_preheat_hotend_temp-180" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PLA_PREHEAT_HOTEND_TEMP 180</h1>
+
+<h1>
+<a id="define-pla_preheat_hpb_temp-70" class="anchor" href="#define-pla_preheat_hpb_temp-70" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PLA_PREHEAT_HPB_TEMP 70</h1>
+
+<h1>
+<a id="define-pla_preheat_fan_speed-255----insert-value-between-0-and-255" class="anchor" href="#define-pla_preheat_fan_speed-255----insert-value-between-0-and-255" aria-hidden="true"><span class="octicon octicon-link"></span></a>define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255</h1>
+
+<h1>
+<a id="define-abs_preheat_hotend_temp-240" class="anchor" href="#define-abs_preheat_hotend_temp-240" aria-hidden="true"><span class="octicon octicon-link"></span></a>define ABS_PREHEAT_HOTEND_TEMP 240</h1>
+
+<h1>
+<a id="define-abs_preheat_hpb_temp-100" class="anchor" href="#define-abs_preheat_hpb_temp-100" aria-hidden="true"><span class="octicon octicon-link"></span></a>define ABS_PREHEAT_HPB_TEMP 100</h1>
+
+<h1>
+<a id="define-abs_preheat_fan_speed-255----insert-value-between-0-and-255" class="anchor" href="#define-abs_preheat_fan_speed-255----insert-value-between-0-and-255" aria-hidden="true"><span class="octicon octicon-link"></span></a>define ABS_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255</h1>
+
+<p>//LCD and SD support
+//#define ULTRA_LCD  //general LCD support, also 16x2
+//#define DOGLCD  // Support for SPI LCD 128x64 (Controller ST7565R graphic Display Family)
+//#define SDSUPPORT // Enable SD Card Support in Hardware Console
+//#define SDSLOW // Use slower SD transfer mode (not normally needed - uncomment if you're getting volume init error)
+//#define SD_CHECK_AND_RETRY // Use CRC checks and retries on the SD communication
+//#define ENCODER_PULSES_PER_STEP 1 // Increase if you have a high resolution encoder
+//#define ENCODER_STEPS_PER_MENU_ITEM 5 // Set according to ENCODER_PULSES_PER_STEP or your liking
+//#define ULTIMAKERCONTROLLER //as available from the Ultimaker online store.
+//#define ULTIPANEL  //the UltiPanel as on Thingiverse
+//#define LCD_FEEDBACK_FREQUENCY_HZ 1000    // this is the tone frequency the buzzer plays when on UI feedback. ie Screen Click
+//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 100 // the duration the buzzer plays the UI feedback sound. ie Screen Click</p>
+
+<p>// The MaKr3d Makr-Panel with graphic controller and SD support
+// <a href="http://reprap.org/wiki/MaKr3d_MaKrPanel">http://reprap.org/wiki/MaKr3d_MaKrPanel</a>
+//#define MAKRPANEL</p>
+
+<p>// The RepRapDiscount Smart Controller (white PCB)
+// <a href="http://reprap.org/wiki/RepRapDiscount_Smart_Controller">http://reprap.org/wiki/RepRapDiscount_Smart_Controller</a>
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER</p>
+
+<p>// The GADGETS3D G3D LCD/SD Controller (blue PCB)
+// <a href="http://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel">http://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel</a>
+//#define G3D_PANEL</p>
+
+<p>// The RepRapDiscount FULL GRAPHIC Smart Controller (quadratic white PCB)
+// <a href="http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller">http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller</a>
+//
+// ==&gt; REMEMBER TO INSTALL U8glib to your ARDUINO library folder: <a href="http://code.google.com/p/u8glib/wiki/u8glib">http://code.google.com/p/u8glib/wiki/u8glib</a></p>
+
+<h1>
+<a id="define-reprap_discount_full_graphic_smart_controller" class="anchor" href="#define-reprap_discount_full_graphic_smart_controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER</h1>
+
+<p>// The RepRapWorld REPRAPWORLD_KEYPAD v1.1
+// <a href="http://reprapworld.com/?products_details&amp;products_id=202&amp;cPath=1591_1626">http://reprapworld.com/?products_details&amp;products_id=202&amp;cPath=1591_1626</a>
+//#define REPRAPWORLD_KEYPAD
+//#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0 // how much should be moved when a key is pressed, eg 10.0 means 10mm per click</p>
+
+<p>// The Elefu RA Board Control Panel
+// <a href="http://www.elefu.com/index.php?route=product/product&amp;product_id=53">http://www.elefu.com/index.php?route=product/product&amp;product_id=53</a>
+// REMEMBER TO INSTALL LiquidCrystal_I2C.h in your ARUDINO library folder: <a href="https://github.com/kiyoshigawa/LiquidCrystal_I2C">https://github.com/kiyoshigawa/LiquidCrystal_I2C</a>
+//#define RA_CONTROL_PANEL</p>
+
+<p>//automatic expansion</p>
+
+<h1>
+<a id="if-defined-makrpanel" class="anchor" href="#if-defined-makrpanel" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined (MAKRPANEL)</h1>
+
+<p>#define DOGLCD
+ #define SDSUPPORT
+ #define ULTIPANEL
+ #define NEWPANEL
+ #define DEFAULT_LCD_CONTRAST 17</p>
+
+<h1>
+<a id="endif-5" class="anchor" href="#endif-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="if-defined-reprap_discount_full_graphic_smart_controller" class="anchor" href="#if-defined-reprap_discount_full_graphic_smart_controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined (REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)</h1>
+
+<p>#define DOGLCD
+ #define U8GLIB_ST7920
+ #define REPRAP_DISCOUNT_SMART_CONTROLLER</p>
+
+<h1>
+<a id="endif-6" class="anchor" href="#endif-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="if-definedultimakercontroller--definedreprap_discount_smart_controller--definedg3d_panel" class="anchor" href="#if-definedultimakercontroller--definedreprap_discount_smart_controller--definedg3d_panel" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined(ULTIMAKERCONTROLLER) || defined(REPRAP_DISCOUNT_SMART_CONTROLLER) || defined(G3D_PANEL)</h1>
+
+<p>#define ULTIPANEL
+ #define NEWPANEL</p>
+
+<h1>
+<a id="endif-7" class="anchor" href="#endif-7" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="if-definedreprapworld_keypad" class="anchor" href="#if-definedreprapworld_keypad" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined(REPRAPWORLD_KEYPAD)</h1>
+
+<p>#define NEWPANEL
+  #define ULTIPANEL</p>
+
+<h1>
+<a id="endif-8" class="anchor" href="#endif-8" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="if-definedra_control_panel" class="anchor" href="#if-definedra_control_panel" aria-hidden="true"><span class="octicon octicon-link"></span></a>if defined(RA_CONTROL_PANEL)</h1>
+
+<p>#define ULTIPANEL
+ #define NEWPANEL
+ #define LCD_I2C_TYPE_PCA8574
+ #define LCD_I2C_ADDRESS 0x27   // I2C Address of the port expander</p>
+
+<h1>
+<a id="endif-9" class="anchor" href="#endif-9" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>//I2C PANELS</p>
+
+<p>//#define LCD_I2C_SAINSMART_YWROBOT</p>
+
+<h1>
+<a id="ifdef-lcd_i2c_sainsmart_ywrobot" class="anchor" href="#ifdef-lcd_i2c_sainsmart_ywrobot" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef LCD_I2C_SAINSMART_YWROBOT</h1>
+
+<p>// This uses the LiquidCrystal_I2C library ( <a href="https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/Home">https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/Home</a> )
+  // Make sure it is placed in the Arduino libraries directory.
+  #define LCD_I2C_TYPE_PCF8575
+  #define LCD_I2C_ADDRESS 0x27   // I2C Address of the port expander
+  #define NEWPANEL
+  #define ULTIPANEL</p>
+
+<h1>
+<a id="endif-10" class="anchor" href="#endif-10" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// PANELOLU2 LCD with status LEDs, separate encoder and click inputs
+//#define LCD_I2C_PANELOLU2</p>
+
+<h1>
+<a id="ifdef-lcd_i2c_panelolu2" class="anchor" href="#ifdef-lcd_i2c_panelolu2" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef LCD_I2C_PANELOLU2</h1>
+
+<p>// This uses the LiquidTWI2 library v1.2.3 or later ( <a href="https://github.com/lincomatic/LiquidTWI2">https://github.com/lincomatic/LiquidTWI2</a> )
+  // Make sure the LiquidTWI2 directory is placed in the Arduino or Sketchbook libraries subdirectory.
+  // (v1.2.3 no longer requires you to define PANELOLU in the LiquidTWI2.h library header file)
+  // Note: The PANELOLU2 encoder click input can either be directly connected to a pin
+  //       (if BTN_ENC defined to != -1) or read through I2C (when BTN_ENC == -1).
+  #define LCD_I2C_TYPE_MCP23017
+  #define LCD_I2C_ADDRESS 0x20 // I2C Address of the port expander
+  #define LCD_USE_I2C_BUZZER //comment out to disable buzzer on LCD
+  #define NEWPANEL
+  #define ULTIPANEL</p>
+
+<p>#ifndef ENCODER_PULSES_PER_STEP
+    #define ENCODER_PULSES_PER_STEP 4
+  #endif</p>
+
+<p>#ifndef ENCODER_STEPS_PER_MENU_ITEM
+    #define ENCODER_STEPS_PER_MENU_ITEM 1
+  #endif</p>
+
+<p>#ifdef LCD_USE_I2C_BUZZER
+    #define LCD_FEEDBACK_FREQUENCY_HZ 1000
+    #define LCD_FEEDBACK_FREQUENCY_DURATION_MS 100
+  #endif</p>
+
+<h1>
+<a id="endif-11" class="anchor" href="#endif-11" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// Panucatt VIKI LCD with status LEDs, integrated click &amp; L/R/U/P buttons, separate encoder inputs
+//#define LCD_I2C_VIKI</p>
+
+<h1>
+<a id="ifdef-lcd_i2c_viki" class="anchor" href="#ifdef-lcd_i2c_viki" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef LCD_I2C_VIKI</h1>
+
+<p>// This uses the LiquidTWI2 library v1.2.3 or later ( <a href="https://github.com/lincomatic/LiquidTWI2">https://github.com/lincomatic/LiquidTWI2</a> )
+  // Make sure the LiquidTWI2 directory is placed in the Arduino or Sketchbook libraries subdirectory.
+  // Note: The pause/stop/resume LCD button pin should be connected to the Arduino
+  //       BTN_ENC pin (or set BTN_ENC to -1 if not used)
+  #define LCD_I2C_TYPE_MCP23017
+  #define LCD_I2C_ADDRESS 0x20 // I2C Address of the port expander
+  #define LCD_USE_I2C_BUZZER //comment out to disable buzzer on LCD (requires LiquidTWI2 v1.2.3 or later)
+  #define NEWPANEL
+  #define ULTIPANEL</p>
+
+<h1>
+<a id="endif-12" class="anchor" href="#endif-12" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// Shift register panels
+// ---------------------
+// 2 wire Non-latching LCD SR from:
+// <a href="https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/schematics#!shiftregister-connection">https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/schematics#!shiftregister-connection</a>
+//#define SR_LCD</p>
+
+<h1>
+<a id="ifdef-sr_lcd" class="anchor" href="#ifdef-sr_lcd" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef SR_LCD</h1>
+
+<p>#define SR_LCD_2W_NL    // Non latching 2 wire shift register
+   //#define NEWPANEL</p>
+
+<h1>
+<a id="endif-13" class="anchor" href="#endif-13" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="ifdef-ultipanel" class="anchor" href="#ifdef-ultipanel" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef ULTIPANEL</h1>
+
+<p>//  #define NEWPANEL  //enable this if you have a click-encoder panel
+  #define SDSUPPORT
+  #define ULTRA_LCD
+  #ifdef DOGLCD // Change number of lines to match the DOG graphic display
+    #define LCD_WIDTH 20
+    #define LCD_HEIGHT 5
+  #else
+    #define LCD_WIDTH 20
+    #define LCD_HEIGHT 4
+  #endif</p>
+
+<h1>
+<a id="else-no-panel-but-just-lcd" class="anchor" href="#else-no-panel-but-just-lcd" aria-hidden="true"><span class="octicon octicon-link"></span></a>else //no panel but just LCD</h1>
+
+<p>#ifdef ULTRA_LCD
+  #ifdef DOGLCD // Change number of lines to match the 128x64 graphics display
+    #define LCD_WIDTH 20
+    #define LCD_HEIGHT 5
+  #else
+    #define LCD_WIDTH 16
+    #define LCD_HEIGHT 2
+  #endif
+  #endif</p>
+
+<h1>
+<a id="endif-14" class="anchor" href="#endif-14" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// default LCD contrast for dogm-like LCD displays</p>
+
+<h1>
+<a id="ifdef-doglcd" class="anchor" href="#ifdef-doglcd" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifdef DOGLCD</h1>
+
+<h1>
+<a id="ifndef-default_lcd_contrast" class="anchor" href="#ifndef-default_lcd_contrast" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifndef DEFAULT_LCD_CONTRAST</h1>
+
+<h1>
+<a id="define-default_lcd_contrast-32" class="anchor" href="#define-default_lcd_contrast-32" aria-hidden="true"><span class="octicon octicon-link"></span></a>define DEFAULT_LCD_CONTRAST 32</h1>
+
+<h1>
+<a id="endif-15" class="anchor" href="#endif-15" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<h1>
+<a id="endif-16" class="anchor" href="#endif-16" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif</h1>
+
+<p>// Increase the FAN pwm frequency. Removes the PWM noise but increases heating in the FET/Arduino
+//#define FAST_PWM_FAN</p>
+
+<p>// Temperature status LEDs that display the hotend and bet temperature.
+// If all hotends and bed temperature and temperature setpoint are &lt; 54C then the BLUE led is on.
+// Otherwise the RED led is on. There is 1C hysteresis.
+//#define TEMP_STAT_LEDS</p>
+
+<p>// Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
+// which is not ass annoying as with the hardware PWM. On the other hand, if this frequency
+// is too low, you should also increment SOFT_PWM_SCALE.
+//#define FAN_SOFT_PWM</p>
+
+<p>// Incrementing this by 1 will double the software PWM frequency,
+// affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
+// However, control resolution will be halved for each increment;
+// at zero value, there are 128 effective control positions.</p>
+
+<h1>
+<a id="define-soft_pwm_scale-0" class="anchor" href="#define-soft_pwm_scale-0" aria-hidden="true"><span class="octicon octicon-link"></span></a>define SOFT_PWM_SCALE 0</h1>
+
+<p>// M240  Triggers a camera by emulating a Canon RC-1 Remote
+// Data from: <a href="http://www.doc-diy.net/photo/rc-1_hacked/">http://www.doc-diy.net/photo/rc-1_hacked/</a>
+// #define PHOTOGRAPH_PIN     23</p>
+
+<p>// SF send wrong arc g-codes when using Arc Point as fillet procedure
+//#define SF_ARC_FIX</p>
+
+<p>// Support for the BariCUDA Paste Extruder.
+//#define BARICUDA</p>
+
+<p>//define BlinkM/CyzRgb Support
+//#define BLINKM</p>
+
+<p>/*********************************************************************\</p>
+
+<ul>
+<li>R/C SERVO support</li>
+<li>Sponsored by TrinityLabs, Reworked by codexmas
+**********************************************************************/</li>
+</ul>
+
+<p>// Number of servos
+//
+// If you select a configuration below, this will receive a default value and does not need to be set manually
+// set it manually if you have more servos than extruders and wish to manually control some
+// leaving it undefined or defining as 0 will disable the servo subsystem
+// If unsure, leave commented / disabled
+//
+//#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command</p>
+
+<p>// Servo Endstops
+//
+// This allows for servo actuated endstops, primary usage is for the Z Axis to eliminate calibration or bed height changes.
+// Use M206 command to correct for switch height offset to actual nozzle height. Store that setting with M500.
+//
+//#define SERVO_ENDSTOPS {-1, -1, 0} // Servo index for X, Y, Z. Disable with -1
+//#define SERVO_ENDSTOP_ANGLES {0,0, 0,0, 70,0} // X,Y,Z Axis Extend and Retract angles</p>
+
+<h1>
+<a id="include-configuration_advh" class="anchor" href="#include-configuration_advh" aria-hidden="true"><span class="octicon octicon-link"></span></a>include "Configuration_adv.h"</h1>
+
+<h1>
+<a id="include-thermistortablesh" class="anchor" href="#include-thermistortablesh" aria-hidden="true"><span class="octicon octicon-link"></span></a>include "thermistortables.h"</h1>
+
+<h1>
+<a id="endif-__configuration_h" class="anchor" href="#endif-__configuration_h" aria-hidden="true"><span class="octicon octicon-link"></span></a>endif //__CONFIGURATION_H</h1>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Corexy maintained by <a href="https://github.com/3DPrinter-org-ua">3DPrinter-org-ua</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43445768-5");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
